@@ -38,7 +38,8 @@ h1 {
 }
 
 .gray {
-	display: inline-block;
+	height: 220px;
+	overflow: hidden;
 	background-color: #696969;
 	border: 1px solid black;
 	padding: 0;
