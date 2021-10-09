@@ -83,22 +83,11 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
     showLoading("#main-content");
     $ajaxUtils.sendGetRequest(
       allCategoriesUrl,
-      function (responseText) {
-        buildAndShowHomeHTML(responseText);
-      }, // ***** <---- TODO: STEP 1: Substitute [...] ******
+      buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
       true); // Explicitly setting the flag to get JSON from server processed into an object literal
   });
   // *** finish **
 
-  // showLoading("#main-content");
-  // $ajaxUtils.sendGetRequest(
-  //   homeHtmlUrl,
-  //   function (responseText) {
-  //     document.querySelector("#main-content")
-  //       .innerHTML = responseText;
-  //   },
-  //   true);
-  // });
 
   // Builds HTML for the home page based on categories array
   // returned from the server.
@@ -113,7 +102,6 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
         // var chosenCategoryShortName = ....
         // console.log(homeHtml)
         var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
-        // console.log(chosenCategoryShortName);
 
         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
         // chosen category from STEP 2. Use existing insertProperty function for that purpose.
@@ -127,10 +115,8 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
         // it into the home html snippet.
         //
         // var homeHtmlToInsertIntoMainPage = ....
-        var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml,
-          "randomCategoryShortName",
-          chosenCategoryShortName);
-        // console.log(homeHtmlToInsertIntoMainPage);
+        chosenCategoryShortName = "'" + chosenCategoryShortName + "'";
+        var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", chosenCategoryShortName);
 
         // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
         // Use the existing insertHtml function for that purpose. Look through this code for an example
